@@ -1,0 +1,6 @@
+name: dart_ext
+version: 0.0.1
+author: Kun Zhao <kzhdev@gmail.com>
+description: A set of useful helper functions
+dev_dependencies:
+  unittest: any
