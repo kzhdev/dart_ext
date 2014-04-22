@@ -1,6 +1,4 @@
 #Dart_ext
-============
-
 A set of useful helper functions
 
 ##Installing
