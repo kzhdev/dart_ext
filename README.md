@@ -84,7 +84,8 @@ Merge up to 4 maps into a new map.
     'list': [{'one': 1, 'two': 2}, {'two': 2, 'three': 3}, 4]
   }
 ```
-#####Note: 1. merge didn't check value type. 
-           2. if the value was a Iterable, it merge items at the same index.
+#####Note: 
+  1. merge didn't check value type. 
+  2. if the value was a Iterable, it merge items at the same index.
 
 
