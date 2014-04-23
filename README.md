@@ -56,8 +56,8 @@ It is convenient to use in a setter which set a value in map.
   void set name(String value) => setValue(_config, 'name', value);
 ```
 
-####Map clone(Map source)
-return a clone of the specified map
+####dynamic clone(dynamic source)
+return a clone of the specified object
 
 ####Map merge(Map map1, Map map2, [Map map3, Map4])
 Merge up to 4 maps into a new map.
