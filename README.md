@@ -23,6 +23,10 @@ Add this line in your dart code:
 
 ##API
 
+###Object
+####dynamic clone(dynamic source)
+return a clone of the specified object
+
 ###String 
 ####String capitalize(String s)
 return a capitalized string
@@ -55,9 +59,6 @@ It is convenient to use in a setter which set a value in map.
   
   void set name(String value) => setValue(_config, 'name', value);
 ```
-
-####dynamic clone(dynamic source)
-return a clone of the specified object
 
 ####Map merge(Map map1, Map map2, [Map map3, Map4])
 Merge up to 4 maps into a new map.
