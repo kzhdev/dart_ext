@@ -1,4 +1,4 @@
-#Dart_ext
+#dart_ext
 A set of useful helper functions
 
 ##Installing
@@ -78,7 +78,7 @@ Merge up to 4 maps into a new map.
   }
   
   Map merged = merge(one, two);
-  // mergee is:
+  // merged is:
   {
     'a': 'A',
     'b': 3,

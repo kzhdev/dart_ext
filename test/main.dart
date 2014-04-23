@@ -19,13 +19,13 @@ void main() {
   });
 
   test('merge', () {
-    Map one = { 'a': 'a', 'b': 'b', 'list': [{'one': 1}, {'two': 2}]};
-    Map two = { 'a': 'A', 'b': 3, 'list': [{'two': 2}, {'three': 3}, 4]};
-    Map three = merge(one, two);
-    expect(three, equals({'a': 'A', 'b': 3, 'list': [{'one': 1, 'two': 2}, {'two': 2, 'three': 3}, 4]}));
+    Map one = { 'a': 'a', 'b': 'b', 'list': [{'one': 1}, {'two': 2}], 'list2': [1, 'a', 2, 'b']};
+    Map two = { 'a': 'A', 'b': 3, 'list': [{'two': 2}, {'three': 3}, 4], 'list2': [1,2, 3, 4, 5, 6]};
+    Map merged = merge(one, two);
+    expect(merged, equals({'a': 'A', 'b': 3, 'list': [{'one': 1, 'two': 2}, {'two': 2, 'three': 3}, 4], 'list2': [1, 2, 3, 4, 5, 6]}));
 
     // changing merged map shouldn't change original maps
-    three['b'] = 'B';
+    merged['b'] = 'B';
     expect(two['b'], equals(3));
     expect(one['b'], equals('b'));
   });
