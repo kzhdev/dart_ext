@@ -52,7 +52,6 @@ Map merge(Map map1, Map map2, [Map map3 = null, Map map4 = null]) {
   Map rt = map1 == null ? {} : clone(map1);
 
   Iterable _mergeIterable(mergeTo, Iterable itr) {
-    print(mergeTo);
     List target = new List.from(mergeTo);
     int i = 0;
     for (; i < target.length && i < itr.length; i++) {
