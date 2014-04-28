@@ -27,6 +27,22 @@ Add this line in your dart code:
 ####dynamic clone(dynamic source)
 return a clone of the specified object
 
+###Function
+####relaxFn(Function function)
+An funtion wrapper which support flexable number of arguments
+
+####partial(Function functoin, List args)
+Partially apply a function by filling in 0 to 5 number of its arguments;
+* `function` - The function with partially filled args
+* `args` - A List of prefilled args.
+
+Example:
+```
+    Function add = (num a, num b) { return a + b; };
+    var add5 = new partial(add, [5]);
+    num rt = add5(6);
+```
+
 ###String 
 ####String capitalize(String s)
 return a capitalized string

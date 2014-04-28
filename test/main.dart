@@ -29,4 +29,26 @@ void main() {
     expect(two['b'], equals(3));
     expect(one['b'], equals('b'));
   });
+
+  test('partial', () {
+    Function callback = (arg0, arg1, arg2) {
+      return '${arg0}, ${arg1}, ${arg2}';
+    };
+
+    partial p = new partial(callback, [1, 2]);
+    String rt = p(3);
+    expect(rt, isNotNull);
+    List<String> parts = rt.split(', ');
+    expect(parts.length, equals(3));
+    expect(parts[0], equals('1'));
+    expect(parts[1], equals('2'));
+    expect(parts[2], equals('3'));
+  });
+
+  test('partial add', () {
+    Function add = (num a, num b) { return a + b; };
+    var add5 = new partial(add, [5]);
+    num rt = add5(6);
+    expect(rt, equals(11));
+  });
 }
