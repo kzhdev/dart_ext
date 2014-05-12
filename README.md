@@ -31,7 +31,7 @@ return a clone of the specified object
 ####relaxFn(Function function)
 An funtion wrapper which support flexable number of arguments
 
-####partial(Function functoin, List args)
+####bind(Function functoin, List args)
 Partially apply a function by filling in 0 to 5 number of its arguments;
 * `function` - The function with partially filled args
 * `args` - A List of prefilled args.
@@ -39,9 +39,16 @@ Partially apply a function by filling in 0 to 5 number of its arguments;
 Example:
 ```
     Function add = (num a, num b) { return a + b; };
-    var add5 = new partial(add, [5]);
+    var add5 = new bind(add, [5]);
     num rt = add5(6);
 ```
+
+####invokeMethod(var target, String methodName, [arg0, arg1, arg2, arg3, arg4, arg5])
+Invoke the given method in the target object.
+* `target` - the object where the mehtod invoked from
+* 'methodName` - the function name
+* `[arg0, arg1, arg2, arg3, arg4, arg5]` - optional arguments. Suport 0 to 6 args.
+Exception: if the method didn't exist in the target object, it throws 
 
 ###String 
 ####String capitalize(String s)

@@ -2,6 +2,22 @@ import 'package:unittest/unittest.dart';
 
 import '../lib/dart_ext.dart';
 
+class A {
+  String foo() {
+    return 'A foo';
+  }
+
+  String bar() {
+    return 'A bar';
+  }
+}
+
+class B extends A{
+  String foo() {
+    return 'B foo';
+  }
+}
+
 void main() {
   test('capitalize', () {
     String s = capitalize('internet');
@@ -30,13 +46,13 @@ void main() {
     expect(one['b'], equals('b'));
   });
 
-  test('partial', () {
+  test('bind', () {
     Function callback = (arg0, arg1, arg2) {
       return '${arg0}, ${arg1}, ${arg2}';
     };
 
-    partial p = new partial(callback, [1, 2]);
-    String rt = p(3);
+    bind b = new bind(callback, [1, 2]);
+    String rt = b(3);
     expect(rt, isNotNull);
     List<String> parts = rt.split(', ');
     expect(parts.length, equals(3));
@@ -45,10 +61,29 @@ void main() {
     expect(parts[2], equals('3'));
   });
 
-  test('partial add', () {
+  test('bind add', () {
     Function add = (num a, num b) { return a + b; };
-    var add5 = new partial(add, [5]);
+    var add5 = new bind(add, [5]);
     num rt = add5(6);
     expect(rt, equals(11));
+  });
+
+  test('invoke method', (){
+    A a = new A();
+    var rt = invokeMethod(a, 'foo');
+    expect(rt, equals('A foo'));
+    rt = invokeMethod(a, 'bar');
+    expect(rt, equals('A bar'));
+    A b = new B();
+    rt = invokeMethod(b, 'foo');
+    expect(rt, equals('B foo'));
+    rt = invokeMethod(b, 'bar');
+    expect(rt, equals('A bar'));
+    try {
+      invokeMethod(a, 'print');
+      throw 'print function should not exit';
+    } catch(e) {
+      expect(e.message, equals('No element'));
+    }
   });
 }
