@@ -1,5 +1,6 @@
 library dart_ext.function;
 
+@MirrorsUsed(override: "*")
 import 'dart:mirrors';
 
 typedef FnWith0Args();
