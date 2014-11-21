@@ -83,8 +83,10 @@ It is convenient to use in a setter which set a value in map.
   void set name(String value) => setValue(_config, 'name', value);
 ```
 
-####Map merge(Map map1, Map map2, [Map map3, Map4])
-Merge up to 4 maps into a new map.
+####Map merge(Map map1, others, {Function iterableMergeFunc})
+Merge maps into a new map.
+* others - can be a Map or a list<Map>
+* iterableMergeFunc - a custom merge function to override default iterable merge behavior
 ```
   import 'package:dart_ext/collection_ext.dart';  // only import collection extension
   
@@ -100,12 +102,54 @@ Merge up to 4 maps into a new map.
     'list': [{ 'two': 2 }, { 'three': 3 }, 4 ]
   }
   
+  Map three = {
+    'a': 'A',
+    'b': 4,
+    'list': [{ 'three': 3 }, { 'four': 4}, 5, 6]
+  }
+  
   Map merged = merge(one, two);
   // merged is:
   {
     'a': 'A',
     'b': 3,
     'list': [{'one': 1, 'two': 2}, {'two': 2, 'three': 3}, 4]
+  }
+  
+  merged = merge(one, [two, three]);
+  // merged is:
+  {
+    'a': 'A',
+    'b': 4,
+    'list': [{'one': 1, 'two': 2, 'three': 3}, {'two': 2, 'three': 3, 'four': 4}, 5, 6]
+  }
+  
+  merged = merge(one, two, (target, other) {
+    list<num> toReturn = [];
+    
+    void _merge(List l) {
+        target.forEach((t) {
+            if (t is Map) {
+                t.forEach((k, v) {
+                    if (toReturn.contains(v) == false) {
+                        toReturn.add(v);
+                    }
+                });
+            } else if (toReturn.contains(v) == false) {
+                toReturn.add(v);
+            }
+        });
+    }
+    
+    _merge(target);
+    _merge(orther);
+    return toReturn;
+  });
+  // merged is:
+  {
+    'a': 'A',
+    'b': 3,
+    'list': [1, 2, 3, 4]
   }
 ```
 #####Note: 

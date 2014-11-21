@@ -1,3 +1,7 @@
+#v0.0.8
+* Suport merge unlimieted number of Map
+* Add ability to override default Iterable merge behavior
+
 #v0.0.7
 * Add @MirrorUsed annotation
 

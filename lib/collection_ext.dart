@@ -48,7 +48,7 @@ dynamic clone(dynamic source) {
   return rt;
 }
 
-Map merge(Map map1, Map map2, [Map map3 = null, Map map4 = null]) {
+Map merge(Map map1, others, {Function iterableMergeFunc: null}) {
   Map rt = map1 == null ? {} : clone(map1);
 
   Iterable _mergeIterable(mergeTo, Iterable itr) {
@@ -65,9 +65,14 @@ Map merge(Map map1, Map map2, [Map map3 = null, Map map4 = null]) {
       }
     }
 
-    for (; i < itr.length; i++) {
-      target.add(clone(itr.elementAt(i)));
+    if (i < target.length) {
+        target.removeRange(i, target.length);
+    } else {
+        for (; i < itr.length; i++) {
+          target.add(clone(itr.elementAt(i)));
+        }
     }
+
     return itr is Set ? target.toSet() : target;
   }
 
@@ -77,7 +82,11 @@ Map merge(Map map1, Map map2, [Map map3 = null, Map map4 = null]) {
         if (v is Map) {
           rt[k] = merge(rt[k], map[k]);
         } else if (v is Iterable){
-          rt[k] = _mergeIterable(rt[k], v);
+          if (iterableMergeFunc != null) {
+              rt[k] = iterableMergeFunc(rt[k], v);
+          } else {
+              rt[k] = _mergeIterable(rt[k], v);
+          }
         } else {
           rt[k] = v;
         }
@@ -87,15 +96,12 @@ Map merge(Map map1, Map map2, [Map map3 = null, Map map4 = null]) {
     });
   }
 
-  if (map2 != null) {
-    _merge(map2);
-  }
-
-  if (map3 != null) {
-    _merge(map3);
-  }
-  if (map4 != null) {
-    _merge(map4);
+  if (others is Map) {
+      _merge(others);
+  } else if (others is Iterable<Map>) {
+      others.forEach((o) {
+          _merge(o);
+      });
   }
   return rt;
 }
