@@ -1,7 +1,7 @@
 library dart_ext.collection;
 
-dynamic getValue(Map map, key, [defaultValue = null]) {
-  dynamic _getDefaultValue(defaultValue) {
+getValue(Map map, key, [defaultValue = null]) {
+  _getDefaultValue(defaultValue) {
     if (defaultValue is Function) {
       return defaultValue();
     }
@@ -12,7 +12,7 @@ dynamic getValue(Map map, key, [defaultValue = null]) {
   }
 
   var rt = map[key];
-  return rt == null ? _getDefaultValue(defaultValue) : rt;
+  return map.containsKey(key) ? rt : _getDefaultValue(defaultValue);
 }
 
 void setValue(Map map, key, value) {
