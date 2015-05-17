@@ -1,3 +1,7 @@
+#0.0.11
+* Remove mirror from function_ext.dart
+* Removed dart_ext.dart file
+
 #0.0.10
 * Separate invoke method into function_ext_mirror_invoke.dart;
 
