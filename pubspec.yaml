@@ -1,7 +1,9 @@
 name: dart_ext
-version: 0.0.9
-author: Kun Zhao <kzhdev@gmail.com>
+version: 0.0.10
+author: Kun Zhao <kunzhao77@gmail.com>
 description: A set of useful helper functions
 homepage: https://github.com/kzhdev/dart_ext
+environment:
+  sdk: '>=1.0.0 <2.0.0'
 dev_dependencies:
-  unittest: '>=0.11.0 <0.12.0'
+  test: '>=0.12.0 <0.13.0'

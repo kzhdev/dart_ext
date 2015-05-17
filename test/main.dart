@@ -1,6 +1,9 @@
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
-import '../lib/dart_ext.dart';
+import '../lib/collection_ext.dart';
+import '../lib/function_ext.dart';
+import '../lib/string_ext.dart';
+import '../lib/function_ext_mirror_invoke.dart';
 import 'dart:math';
 
 class A {
