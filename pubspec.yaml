@@ -4,6 +4,7 @@ author: Kun Zhao <kunzhao77@gmail.com>
 description: A set of useful helper functions
 homepage: https://github.com/kzhdev/dart_ext
 environment:
-  sdk: '>=1.0.0 <2.0.0'
+  sdk: '>=1.0.0 <=2.0.0-dev.0.31.0'
+
 dev_dependencies:
-  test: '>=0.12.0 <0.13.0'
+  test: ^0.12.0
